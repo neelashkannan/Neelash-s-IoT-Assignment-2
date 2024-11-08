@@ -59,9 +59,18 @@ The network architecture consists of:
 ## Hardware Overview
 ### Components
 - **ESP32 DoIT Dev Kit**: A versatile microcontroller with built-in WiFi and Bluetooth.
+  ### ESP32 DevKit
+![ESP32 DevKit](images/esp32_devkit.jpg)
+
+
 - **DHT11 Sensor**: Measures temperature and humidity.
+- ### DHT11 Sensor
+![DHT11 Sensor](images/dht11_sensor.jpg)
+
 - **RGB LED**: Indicates temperature changes and can be remotely controlled.
 
+### RGB LED
+![RGB LED](images/rgb_led.jpg)
 ### Circuit Diagram
 The ESP32 is connected to the DHT11 sensor and RGB LED via GPIO pins, allowing data collection and visual feedback.
 
