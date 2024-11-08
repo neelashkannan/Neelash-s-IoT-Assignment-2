@@ -43,7 +43,7 @@ The network architecture consists of:
 - **MQTT Broker (Mosquitto)**: Facilitates message exchange between the ESP32 and Node-RED.
 - **Node-RED Dashboard**: Visualizes sensor data and controls the RGB LED.
 - **MongoDB Database**: Stores historical data for analysis.
-
+![Network Architecture](images/Architecture.png)
 ### MQTT Topics
 - **Published**: 
   - `assignment2/temperature` (Temperature data)
