@@ -1,14 +1,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <DHT.h>
-#include <Firebase_ESP_Client.h>
-//Provide the token generation process info.
-#include "addons/TokenHelper.h"
-//Provide the RTDB payload printing info and other helper functions.
-#include "addons/RTDBHelper.h"
-// Wi-Fi credentials
-const char* ssid = "NEELASH-LOQ 5535";
-const char* password = "12345678";
+
 
 // MQTT broker details
 const char* mqtt_server = "10.37.98.216";
@@ -28,17 +21,6 @@ const int greenChannel = 1;
 const int blueChannel = 0;
 const int ledPin = 2;               // Built-in LED pin for ON/OFF control
 const int dhtPin = 4;               // DHT11 data pin
-
-#define API_KEY "AIzaSyD9hOm88DWHxQE6rw197X2Gdnr9vIKlf7U"
-
-// Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://assignment2-3f9c2-default-rtdb.europe-west1.firebasedatabase.app/" 
-
-//Define Firebase Data object
-FirebaseData fbdo;
-
-FirebaseAuth auth;
-FirebaseConfig config;
 
 #define DHTTYPE DHT11               // DHT11 sensor type
 DHT dht(dhtPin, DHTTYPE);
@@ -82,7 +64,9 @@ void callback(char* topic, byte* message, unsigned int length) {
     Serial.println("brightness:"+brightness);
   }
 }
-
+// Wi-Fi credentials
+const char* ssid = "NEELASH-LOQ 5535";
+const char* password = "12345678";
 // Connect to Wi-Fi
 void setupWiFi() {
   Serial.print("Connecting to Wi-Fi...");
@@ -170,25 +154,7 @@ void setup() {
   
   setupWiFi();                // Connect to Wi-Fi
   setupMQTT();                // Connect to MQTT broker
-  config.api_key = API_KEY;
 
-  /* Assign the RTDB URL (required) */
-  config.database_url = DATABASE_URL;
-
-  /* Sign up */
-  if (Firebase.signUp(&config, &auth, "", "")){
-    Serial.println("ok");
-    signupOK = true;
-  }
-  else{
-    Serial.printf("%s\n", config.signer.signupError.message.c_str());
-  }
-
-  /* Assign the callback function for the long running token generation task */
-  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
-  
-  Firebase.begin(&config, &auth);
-  Firebase.reconnectWiFi(true);
 }
 
 void loop() {
@@ -237,34 +203,6 @@ void loop() {
     lastMsg = now;
     String statusMessage = "ESP32 is online";
     client.publish(statusTopic, statusMessage.c_str());
-  }
-
-  // Check if Firebase is ready and if we have a valid timestamp from assignment2/time
-  if (Firebase.ready() && signupOK && !currenttime.isEmpty() && 
-      (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)) {
-    sendDataPrevMillis = millis();
-
-    // Structure for humidity data
-    String humidityPath = "sensor_data/humidity/" + String(humidityIndex);
-    if (Firebase.RTDB.setString(&fbdo, humidityPath + "/time", currenttime) &&
-        Firebase.RTDB.setFloat(&fbdo, humidityPath + "/humidityvalue", humidity)) {
-      Serial.println("Humidity data sent to Firebase at index " + String(humidityIndex));
-      humidityIndex++; // Increment index for next reading
-    } else {
-      Serial.println("FAILED to send humidity data");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
-
-    // Structure for temperature data
-    String temperaturePath = "sensor_data/temperature/" + String(temperatureIndex);
-    if (Firebase.RTDB.setString(&fbdo, temperaturePath + "/time", currenttime) &&
-        Firebase.RTDB.setFloat(&fbdo, temperaturePath + "/temperaturevalue", temperature)) {
-      Serial.println("Temperature data sent to Firebase at index " + String(temperatureIndex));
-      temperatureIndex++; // Increment index for next reading
-    } else {
-      Serial.println("FAILED to send temperature data");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
   }
 
   delay(1000); // Delay before next loop iteration
