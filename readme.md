@@ -1,5 +1,5 @@
 # Cloud-Connected IoT System using ESP32, MQTT, and Node-RED
-https://github.com/user-attachments/assets/19818027-0dc1-492f-ad90-64eeb3ad5a98
+
 ## Author
 **Neelash Kannan Annadurai**  
 HWU Elect Electronic & Comp Eng, Heriot Watt University  
@@ -10,7 +10,7 @@ na3018@hw.ac.uk
 
 ## Table of Contents
 - [Abstract](#abstract)
-- [Working Video](#Working Video)
+- [Working Video](#Working-Video)
 - [Introduction](#introduction)
 - [System Architecture](#system-architecture)
 - [Hardware Overview](#hardware-overview)
@@ -25,6 +25,7 @@ na3018@hw.ac.uk
 ## Abstract
 This project demonstrates the implementation of a cloud-connected IoT system using the **ESP32 microcontroller**, **MQTT protocol**, and **Node-RED** for data processing and visualization. MongoDB is used for data storage and analytics. The system collects temperature and humidity data from a DHT11 sensor and provides remote control of an RGB LED via a dynamic Node-RED dashboard. The system focuses on low-bandwidth communication, real-time control, and scalable data storage to showcase how IoT can be used to create adaptive, intelligent environments.
 
+## Working Video
 https://github.com/user-attachments/assets/19818027-0dc1-492f-ad90-64eeb3ad5a98
 
 ---
