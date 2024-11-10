@@ -1,7 +1,4 @@
 # Cloud-Connected IoT System using ESP32, MQTT, and Node-RED
-<div align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/watch?v=CBsAiaks_-Y" frameborder="0" allowfullscreen></iframe>
-</div>
 
 ## Author
 **Neelash Kannan Annadurai**  
