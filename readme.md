@@ -21,7 +21,9 @@ na3018@hw.ac.uk
 - [Keywords](#keywords)
 
 ---
-
+## Working Video
+https://github.com/user-attachments/assets/19818027-0dc1-492f-ad90-64eeb3ad5a98
+---
 ## Abstract
 This project demonstrates the implementation of a cloud-connected IoT system using the **ESP32 microcontroller**, **MQTT protocol**, and **Node-RED** for data processing and visualization. MongoDB is used for data storage and analytics. The system collects temperature and humidity data from a DHT11 sensor and provides remote control of an RGB LED via a dynamic Node-RED dashboard. The system focuses on low-bandwidth communication, real-time control, and scalable data storage to showcase how IoT can be used to create adaptive, intelligent environments.
 
@@ -125,5 +127,4 @@ This project successfully integrates the **ESP32 microcontroller**, **MQTT proto
 
 ---
 
-## Working Video
-https://github.com/user-attachments/assets/19818027-0dc1-492f-ad90-64eeb3ad5a98
+
